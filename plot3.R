@@ -26,6 +26,9 @@ energyData <- dataSet[Date >= as.Date("01/02/2007", format = "%d/%m/%Y") & Date 
 ## Format data Time
 energyData$Time <- as.POSIXct(paste(energyData$Date, energyData$Time))
 
+## Create png file
+png(file = "plot3.png", height = 480, width = 480)
+
 ## Plot data as determined
 with(energyData, {
     plot(Sub_metering_1 ~ Time, col = "Black", type = "l", xlab = "", ylab = "Energy sub metering")
@@ -36,5 +39,4 @@ legend("topright", col = c("Black", "Red", "Blue"), lty=1, lwd=2, legend = c("Su
 
 
 ## Draw plot into a png file
-dev.copy(png, file = "plot3.png", height = 480, width = 480)
 dev.off()

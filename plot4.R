@@ -26,9 +26,11 @@ energyData <- dataSet[Date >= as.Date("01/02/2007", format = "%d/%m/%Y") & Date 
 ## Format data Time
 energyData$Time <- as.POSIXct(paste(energyData$Date, energyData$Time))
 
+## Create png file
+png(file = "plot4.png", height = 480, width = 480)
+
 ## Plot data as determined
 par(mfcol = c(2,2))
-# Plot first graph
 with(energyData, {
     plot(Global_active_power ~ Time, type = "l", xlab = "", ylab = "Global Active Power (kilowatts)")
     plot(Sub_metering_1 ~ Time, col = "Black", type = "l", xlab = "", ylab = "Energy sub metering")
@@ -36,9 +38,8 @@ with(energyData, {
     lines(Sub_metering_3 ~ Time, col = "Blue")
     legend("topright", col = c("Black", "Red", "Blue"), lty=1, lwd=2, legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
     plot(Voltage ~ Time, type = "l", xlab = "datetime", ylab = "Voltage")
-    plot(Global_reactive_power ~ Time, type = "l", xlab = "", ylab = "Global Reactive Power (kilowatts)")
+    plot(Global_reactive_power ~ Time, type = "l", xlab = "datetime", ylab = "Global Reactive Power (kilowatts)")
 })
 
 ## Draw plot into a png file
-dev.copy(png, file = "plot4.png", height = 480, width = 480)
 dev.off()

@@ -26,9 +26,11 @@ energyData <- dataSet[Date >= as.Date("01/02/2007", format = "%d/%m/%Y") & Date 
 ## Format data Time
 energyData$Time <- as.POSIXct(paste(energyData$Date, energyData$Time))
 
+## Create png file
+png(file = "plot2.png", height = 480, width = 480)
+
 ## Plot data as determined
 with(energyData, plot(Global_active_power ~ Time, type = "l", xlab = "", ylab = "Global Active Power (kilowatts)"))
 
 ## Draw plot into a png file
-dev.copy(png, file = "plot2.png", height = 480, width = 480)
 dev.off()
